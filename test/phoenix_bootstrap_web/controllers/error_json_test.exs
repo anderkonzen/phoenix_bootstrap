@@ -2,7 +2,9 @@ defmodule PhoenixBootstrapWeb.ErrorJSONTest do
   use PhoenixBootstrapWeb.ConnCase, async: true
 
   test "renders 404" do
-    assert PhoenixBootstrapWeb.ErrorJSON.render("404.json", %{}) == %{errors: %{detail: "Not Found"}}
+    assert PhoenixBootstrapWeb.ErrorJSON.render("404.json", %{}) == %{
+             errors: %{detail: "Not Found"}
+           }
   end
 
   test "renders 500" do

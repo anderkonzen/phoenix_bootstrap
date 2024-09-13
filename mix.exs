@@ -9,7 +9,15 @@ defmodule PhoenixBootstrap.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      preferred_cli_env: [
+        linter: :test,
+        deps_audit: :test,
+        ci: :test
+      ],
+      dialyzer: [
+        plt_file: {:no_warn, "priv/plts/project.plt"}
+      ]
     ]
   end
 
@@ -58,7 +66,11 @@ defmodule PhoenixBootstrap.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
+      {:sobelow, "~> 0.13", only: [:dev, :test], runtime: false},
+      {:mix_audit, "~> 2.1", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -80,6 +92,15 @@ defmodule PhoenixBootstrap.MixProject do
         "tailwind phoenix_bootstrap --minify",
         "esbuild phoenix_bootstrap --minify",
         "phx.digest"
+      ],
+      linter: ["credo --strict", "format --check-formatted", "sobelow --config"],
+      deps_audit: ["hex.audit", "deps.audit", "deps.unlock --check-unused"],
+      ci: [
+        "compile --warnings-as-errors --all-warnings",
+        "linter",
+        "deps_audit",
+        "dialyzer",
+        "test"
       ]
     ]
   end
