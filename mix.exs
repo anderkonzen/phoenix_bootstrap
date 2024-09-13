@@ -94,11 +94,19 @@ defmodule PhoenixBootstrap.MixProject do
         "phx.digest"
       ],
       linter: ["credo --strict", "format --check-formatted", "sobelow --config"],
-      deps_audit: ["hex.audit", "deps.audit", "deps.unlock --check-unused"],
+      deps_audit: [
+        "deps.audit",
+        "deps.unlock --check-unused",
+        # Compilation prunes code paths, so Hex task modules are no longer
+        # available. We need to bring the application back explicitly, in order
+        # to access its modules.
+        fn _ -> Mix.ensure_application!(:hex) end,
+        "hex.audit"
+      ],
       ci: [
+        "deps_audit",
         "compile --warnings-as-errors --all-warnings",
         "linter",
-        "deps_audit",
         "dialyzer",
         "test"
       ]
