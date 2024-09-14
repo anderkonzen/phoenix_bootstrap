@@ -30,9 +30,13 @@
 /priv/plts/
 /test/
 /tmp/
+.credo.exs
+.dialyzer_ignore.exs
 .elixir_ls
+.formatter.exs
 .sobelow-conf
 .tool-versions
+Dockerfile
 README.md
 
 
