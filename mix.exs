@@ -5,7 +5,7 @@ defmodule PhoenixBootstrap.MixProject do
     [
       app: :phoenix_bootstrap,
       version: "0.1.0",
-      elixir: "~> 1.14",
+      elixir: "~> 1.17",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
@@ -93,7 +93,7 @@ defmodule PhoenixBootstrap.MixProject do
         "esbuild phoenix_bootstrap --minify",
         "phx.digest"
       ],
-      linter: ["credo --strict", "format --check-formatted", "sobelow --config"],
+      lint: ["credo --strict", "format --check-formatted", "sobelow --config"],
       deps_audit: [
         "deps.audit",
         "deps.unlock --check-unused",
@@ -106,9 +106,9 @@ defmodule PhoenixBootstrap.MixProject do
       ci: [
         "deps_audit",
         "compile --warnings-as-errors --all-warnings",
-        "linter",
+        "lint",
         "dialyzer",
-        "test"
+        "test --warnings-as-errors --raise"
       ]
     ]
   end

@@ -55,9 +55,9 @@ jobs:
       - name: Compile
         run: mix compile --warnings-as-errors --all-warnings
 
-  linter:
+  linting:
     needs: compile
-    name: Linter and Security
+    name: Linting and Secutiry
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -95,6 +95,9 @@ jobs:
 
       - name: Format
         run: mix format --check-formatted
+
+      - name: Sobelow
+        run: mix sobelow --config
 
   deps_audit:
     needs: compile
@@ -252,12 +255,12 @@ jobs:
           restore-keys: build-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-
 
       - name: Run tests
-        run: mix test
+        run: mix test --warnings-as-errors --raise
 
   docker_build:
     name: Build and export to Docker
     runs-on: ubuntu-latest
-    needs: [linter, deps_audit, dialyzer, test]
+    needs: [linting, deps_audit, dialyzer, test]
 
     steps:
       - name: Checkout
