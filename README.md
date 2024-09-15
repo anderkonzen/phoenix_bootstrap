@@ -14,6 +14,24 @@ The following are the defaults at the time the project was generated/updated:
   * LiveView configured
   * not an umbrella project
 
+## How to use
+
+Clone the repo:
+
+```shell
+git clone git@github.com:anderkonzen/phoenix_bootstrap.git
+```
+
+Change directory and run the commands:
+
+```shell
+cd phoenix_bootstrap
+mix setup
+iex -S mix phx.server
+```
+
+Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+
 ## Libraries
 
 The project contains the following libraries set up:
@@ -55,22 +73,3 @@ Check the [Actions](https://github.com/anderkonzen/phoenix_bootstrap/actions/wor
 ## TODOs
 
 * Add a way to easily rename the project (some alternatives [here](https://github.com/MainShayne233/rename) and [here](https://github.com/blackham/rename_elixir_app))
-
----
-
-To start your Phoenix server:
-
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
-
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
