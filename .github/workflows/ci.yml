@@ -16,12 +16,6 @@ jobs:
   compile:
     name: Get deps and compile
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        versions:
-          - elixir: 1.17
-            otp: 27.0
 
     steps:
       - name: Checkout
@@ -30,22 +24,22 @@ jobs:
       - name: Set up Elixir/OTP
         uses: erlef/setup-beam@v1
         with:
-          elixir-version: ${{ matrix.versions.elixir }}
-          otp-version: ${{ matrix.versions.otp }}
+          version-file: ".tool-versions"
+          version-type: "strict"
 
       - name: Cache deps
         uses: actions/cache@v4
         with:
           path: deps
-          key: deps-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-${{ hashFiles('**/mix.lock') }}
-          restore-keys: deps-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-
+          key: deps-${{ runner.os }}-mix-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+          restore-keys: deps-${{ runner.os }}-mix-${{ env.cache-name }}-
 
       - name: Cache build
         uses: actions/cache@v4
         with:
           path: _build
-          key: build-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-${{ hashFiles('**/mix.lock') }}
-          restore-keys: build-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-
+          key: build-${{ runner.os }}-mix-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+          restore-keys: build-${{ runner.os }}-mix-${{ env.cache-name }}-
 
       - name: Install dependencies
         run: |
@@ -59,12 +53,6 @@ jobs:
     needs: compile
     name: Linting and Secutiry
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        versions:
-          - elixir: 1.17
-            otp: 27.0
 
     steps:
       - name: Checkout
@@ -73,22 +61,22 @@ jobs:
       - name: Set up Elixir/OTP
         uses: erlef/setup-beam@v1
         with:
-          elixir-version: ${{ matrix.versions.elixir }}
-          otp-version: ${{ matrix.versions.otp }}
+          version-file: ".tool-versions"
+          version-type: "strict"
 
       - name: Cache deps
         uses: actions/cache/restore@v4
         with:
           path: deps
-          key: deps-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-${{ hashFiles('**/mix.lock') }}
-          restore-keys: deps-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-
+          key: deps-${{ runner.os }}-mix-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+          restore-keys: deps-${{ runner.os }}-mix-${{ env.cache-name }}-
 
       - name: Cache build
         uses: actions/cache/restore@v4
         with:
           path: _build
-          key: build-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-${{ hashFiles('**/mix.lock') }}
-          restore-keys: build-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-
+          key: build-${{ runner.os }}-mix-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+          restore-keys: build-${{ runner.os }}-mix-${{ env.cache-name }}-
 
       - name: Credo
         run: mix credo --strict
@@ -103,12 +91,6 @@ jobs:
     needs: compile
     name: Deps audit
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        versions:
-          - elixir: 1.17
-            otp: 27.0
 
     steps:
       - name: Checkout
@@ -117,22 +99,22 @@ jobs:
       - name: Set up Elixir/OTP
         uses: erlef/setup-beam@v1
         with:
-          elixir-version: ${{ matrix.versions.elixir }}
-          otp-version: ${{ matrix.versions.otp }}
+          version-file: ".tool-versions"
+          version-type: "strict"
 
       - name: Cache deps
         uses: actions/cache/restore@v4
         with:
           path: deps
-          key: deps-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-${{ hashFiles('**/mix.lock') }}
-          restore-keys: deps-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-
+          key: deps-${{ runner.os }}-mix-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+          restore-keys: deps-${{ runner.os }}-mix-${{ env.cache-name }}-
 
       - name: Cache build
         uses: actions/cache/restore@v4
         with:
           path: _build
-          key: build-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-${{ hashFiles('**/mix.lock') }}
-          restore-keys: build-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-
+          key: build-${{ runner.os }}-mix-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+          restore-keys: build-${{ runner.os }}-mix-${{ env.cache-name }}-
 
       - name: Hex audit
         run: mix hex.audit
@@ -147,12 +129,6 @@ jobs:
     needs: compile
     name: Dialyzer
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        versions:
-          - elixir: 1.17
-            otp: 27.0
 
     steps:
       - name: Checkout
@@ -161,30 +137,30 @@ jobs:
       - name: Set up Elixir/OTP
         uses: erlef/setup-beam@v1
         with:
-          elixir-version: ${{ matrix.versions.elixir }}
-          otp-version: ${{ matrix.versions.otp }}
+          version-file: ".tool-versions"
+          version-type: "strict"
 
       - name: Restore cache deps
         uses: actions/cache/restore@v4
         with:
           path: deps
-          key: deps-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-${{ hashFiles('**/mix.lock') }}
-          restore-keys: deps-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-
+          key: deps-${{ runner.os }}-mix-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+          restore-keys: deps-${{ runner.os }}-mix-${{ env.cache-name }}-
 
       - name: Restore cache build
         uses: actions/cache/restore@v4
         with:
           path: _build
-          key: build-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-${{ hashFiles('**/mix.lock') }}
-          restore-keys: build-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-
+          key: build-${{ runner.os }}-mix-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+          restore-keys: build-${{ runner.os }}-mix-${{ env.cache-name }}-
 
       - name: Restore PLT cache
         id: plt_cache
         uses: actions/cache/restore@v4
         with:
           path: priv/plts
-          key: plt-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-${{ hashFiles('**/mix.lock') }}
-          restore-keys: plt-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-
+          key: plt-${{ runner.os }}-mix-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+          restore-keys: plt-${{ runner.os }}-mix-${{ env.cache-name }}-
 
       # Create PLTs if no cache was found
       - name: Create PLTs
@@ -199,8 +175,8 @@ jobs:
         if: steps.plt_cache.outputs.cache-hit != 'true'
         with:
           path: priv/plts
-          key: plt-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-${{ hashFiles('**/mix.lock') }}
-          restore-keys: plt-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-
+          key: plt-${{ runner.os }}-mix-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+          restore-keys: plt-${{ runner.os }}-mix-${{ env.cache-name }}-
 
       - name: Dialyzer
         run: mix dialyzer --format github
@@ -209,12 +185,6 @@ jobs:
     needs: compile
     name: Test
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        versions:
-          - elixir: 1.17
-            otp: 27.0
 
     services:
       db:
@@ -237,22 +207,22 @@ jobs:
       - name: Set up Elixir/OTP
         uses: erlef/setup-beam@v1
         with:
-          elixir-version: ${{ matrix.versions.elixir }}
-          otp-version: ${{ matrix.versions.otp }}
+          version-file: ".tool-versions"
+          version-type: "strict"
 
       - name: Cache deps
         uses: actions/cache/restore@v4
         with:
           path: deps
-          key: deps-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-${{ hashFiles('**/mix.lock') }}
-          restore-keys: deps-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-
+          key: deps-${{ runner.os }}-mix-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+          restore-keys: deps-${{ runner.os }}-mix-${{ env.cache-name }}-
 
       - name: Cache build
         uses: actions/cache/restore@v4
         with:
           path: _build
-          key: build-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-${{ hashFiles('**/mix.lock') }}
-          restore-keys: build-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-
+          key: build-${{ runner.os }}-mix-${{ env.cache-name }}-${{ hashFiles('**/mix.lock') }}
+          restore-keys: build-${{ runner.os }}-mix-${{ env.cache-name }}-
 
       - name: Run tests
         run: mix test --warnings-as-errors --raise
