@@ -55,9 +55,9 @@ jobs:
       - name: Compile
         run: mix compile --warnings-as-errors --all-warnings
 
-  linting:
+  lint:
     needs: compile
-    name: Linting and Secutiry
+    name: Lint and Security
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -260,7 +260,7 @@ jobs:
   docker_build:
     name: Build and export to Docker
     runs-on: ubuntu-latest
-    needs: [linting, deps_audit, dialyzer, test]
+    needs: [lint, deps_audit, dialyzer, test]
 
     steps:
       - name: Checkout

@@ -11,7 +11,7 @@ defmodule PhoenixBootstrap.MixProject do
       aliases: aliases(),
       deps: deps(),
       preferred_cli_env: [
-        linter: :test,
+        lint: :test,
         deps_audit: :test,
         ci: :test
       ],
