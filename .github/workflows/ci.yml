@@ -20,8 +20,8 @@ jobs:
       fail-fast: false
       matrix:
         versions:
-          - elixir: 1.17
-            otp: 27.0
+          - elixir: 1.17.3
+            otp: 27.1
 
     steps:
       - name: Checkout
@@ -63,8 +63,8 @@ jobs:
       fail-fast: false
       matrix:
         versions:
-          - elixir: 1.17
-            otp: 27.0
+          - elixir: 1.17.3
+            otp: 27.1
 
     steps:
       - name: Checkout
@@ -107,8 +107,8 @@ jobs:
       fail-fast: false
       matrix:
         versions:
-          - elixir: 1.17
-            otp: 27.0
+          - elixir: 1.17.3
+            otp: 27.1
 
     steps:
       - name: Checkout
@@ -151,8 +151,8 @@ jobs:
       fail-fast: false
       matrix:
         versions:
-          - elixir: 1.17
-            otp: 27.0
+          - elixir: 1.17.3
+            otp: 27.1
 
     steps:
       - name: Checkout
@@ -213,8 +213,8 @@ jobs:
       fail-fast: false
       matrix:
         versions:
-          - elixir: 1.17
-            otp: 27.0
+          - elixir: 1.17.3
+            otp: 27.1
 
     services:
       db:
