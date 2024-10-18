@@ -1,0 +1,62 @@
+name: Run partitioned tests
+
+on:
+  workflow_call:
+    inputs:
+      partition:
+        type: string
+        required: true
+      partitions:
+        type: string
+        required: true
+      elixir-version:
+        type: string
+        required: true
+      otp-version:
+        type: string
+        required: true
+
+env:
+  MIX_ENV: test
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Tests (${{ inputs.partition }}/${{ inputs.partitions }})
+    runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: phoenix_bootstrap_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Common setup with cache/restore
+        uses: ./.github/actions/common-with-cache-restore
+        with:
+          elixir-version: ${{ inputs.elixir-version }}
+          otp-version: ${{ inputs.otp-version }}
+
+      - name: Run tests
+        run: MIX_TEST_PARTITION=${{ inputs.partition }} mix test --cover --warnings-as-errors --raise --partitions ${{ inputs.partitions }}
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-coverage-report-${{ inputs.partition }}-${{ inputs.otp-version }}-${{ inputs.elixir-version }}
+          path: cover
+          if-no-files-found: error

@@ -43,6 +43,8 @@ The project contains the following libraries set up:
 
 The libraries used in this project aim to add standardization, as well as enable security validations and static code analysis.
 
+_Note: if you want to make checks on the project's documentation, I recommend checking the [Doctor](https://hex.pm/packages/doctor) package._
+
 ## CI
 
 The CI pipeline uses all the aforementioned tools to check for security issues (both in code and dependencies), perform code static analysis, test and build.
@@ -53,9 +55,14 @@ The steps used in the CI are as follow:
 - linting and security, with `mix credo --strict`, `mix format --check-formatted` and `mix sobelow --config`
 - dependencies audit, with `mix hex.audit`, `mix deps.audit`, `mix deps.unlock --check-unused`
 - dialyzer
-- test with `mix test --warnings-as-errors --raise`
+- tests with `mix test --warnings-as-errors --raise` (they are [partitioned](https://hexdocs.pm/mix/1.17.3/Mix.Tasks.Test.html#module-operating-system-process-partitioning))
 
 The following mix aliases are available in the project: `mix ci`, `mix lint` and `mix deps_audit`.
+
+> [!NOTE]
+> You will find a _somewhat_ complex CI pipeline with reusable workflows and composite actions.
+> This is on purpose and it aims to show you how can you achieve such customized flow, ie.,
+> version matrix, partitioned tests with unified coverage data, etc.
 
 ## Release and Docker
 
