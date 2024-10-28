@@ -32,16 +32,16 @@ iex -S mix phx.server
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-## Libraries
+## Dependencies
 
-The project contains the following libraries set up:
+The project contains the following dependencies set up:
 
 * [credo](https://hex.pm/packages/credo)
 * [dialyxir](https://hex.pm/packages/dialyxir)
 * [sobelow](https://hex.pm/packages/sobelow)
 * [mix_audit](https://hex.pm/packages/mix_audit)
 
-The libraries used in this project aim to add standardization, as well as enable security validations and static code analysis.
+The above dependencies/libraries aim to add standardization, as well as enable security validations and static code analysis.
 
 _Note: if you want to make checks on the project's documentation, I recommend checking the [Doctor](https://hex.pm/packages/doctor) package._
 
@@ -76,6 +76,12 @@ It also uses the official Docker GitHub Actions and caching in order to make the
 > You may need to change this configuration for it to work in your environment.
 
 Check the [Actions](https://github.com/anderkonzen/phoenix_bootstrap/actions/workflows/ci.yml) page to see it in action.
+
+## Other things you can try
+
+Other than the tools already mentioned, the following tools are suggestions I believe can improve the overall devex:
+
+* https://github.com/randycoulman/mix_test_interactive
 
 ## TODOs
 
