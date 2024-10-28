@@ -41,7 +41,7 @@ The project contains the following dependencies set up:
 * [sobelow](https://hex.pm/packages/sobelow)
 * [mix_audit](https://hex.pm/packages/mix_audit)
 
-The above dependencies/libraries used in this project aim to add standardization, as well as enable security validations and static code analysis.
+The above dependencies/libraries aim to add standardization, as well as enable security validations and static code analysis.
 
 _Note: if you want to make checks on the project's documentation, I recommend checking the [Doctor](https://hex.pm/packages/doctor) package._
 
