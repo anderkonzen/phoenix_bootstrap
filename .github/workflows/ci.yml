@@ -144,7 +144,6 @@ jobs:
         with:
           path: priv/plts
           key: plt-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-${{ hashFiles('**/mix.lock') }}
-          restore-keys: plt-${{ runner.os }}-${{ matrix.versions.otp }}-${{ matrix.versions.elixir }}-
 
       - name: Dialyzer
         run: mix dialyzer --format github
