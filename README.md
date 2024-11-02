@@ -2,15 +2,16 @@
 
 <p align="left">
   <a href="https://elixir-lang.org/">
-    <img src="https://img.shields.io/badge/Elixir-1.17-blue?color=af9fb5">
-  </a>
+    <img src="https://img.shields.io/badge/Elixir-1.17-blue?color=af9fb5"></a><!-- </a> being on the same line as the <img> tag is intentional! -->
   <a href="https://www.phoenixframework.org/">
-    <img src="https://img.shields.io/badge/Phoenix_Framework-1.7.14-blue?color=ff645b">
-  </a>
+    <img src="https://img.shields.io/badge/Phoenix_Framework-1.7.14-blue?color=ff645b"></a>
   <a href="http://unlicense.org/">
-    <img src="https://img.shields.io/badge/license-Unlicense-blue.svg">
-  </a>
+    <img src="https://img.shields.io/badge/license-Unlicense-blue.svg"></a>
   <br>
+  <a href="https://github.com/anderkonzen/phoenix_bootstrap/actions/workflows/ci.yml">
+    <img src="https://github.com/anderkonzen/phoenix_bootstrap/actions/workflows/ci.yml/badge.svg"></a>
+
+
 
 </p>
 
