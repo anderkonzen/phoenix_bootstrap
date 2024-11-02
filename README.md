@@ -1,5 +1,19 @@
 # PhoenixBootstrap
 
+<p align="left">
+  <a href="https://elixir-lang.org/">
+    <img src="https://img.shields.io/badge/Elixir-1.17-blue?color=af9fb5">
+  </a>
+  <a href="https://www.phoenixframework.org/">
+    <img src="https://img.shields.io/badge/Phoenix_Framework-1.7.14-blue?color=ff645b">
+  </a>
+  <a href="http://unlicense.org/">
+    <img src="https://img.shields.io/badge/license-Unlicense-blue.svg">
+  </a>
+  <br>
+
+</p>
+
 ![Static Badge](https://img.shields.io/badge/Elixir-1.17-blue?color=af9fb5) ![Static Badge](https://img.shields.io/badge/Phoenix_Framework-1.7.14-blue?color=ff645b) [![CI](https://github.com/anderkonzen/phoenix_bootstrap/actions/workflows/ci.yml/badge.svg)](https://github.com/anderkonzen/phoenix_bootstrap/actions/workflows/ci.yml) [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
 
 This is an opinionated [Phoenix](https://www.phoenixframework.org/) project that can be used as a starter template for your project.
