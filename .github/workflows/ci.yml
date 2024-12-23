@@ -20,8 +20,8 @@ jobs:
       fail-fast: false
       matrix:
         versions:
-          - elixir: 1.17.3
-            otp: 27.1
+          - elixir: 1.18.0
+            otp: 27.2
 
     steps:
       - name: Checkout
@@ -49,8 +49,8 @@ jobs:
       fail-fast: false
       matrix:
         versions:
-          - elixir: 1.17.3
-            otp: 27.1
+          - elixir: 1.18.0
+            otp: 27.2
 
     steps:
       - name: Checkout
@@ -79,8 +79,8 @@ jobs:
       fail-fast: false
       matrix:
         versions:
-          - elixir: 1.17.3
-            otp: 27.1
+          - elixir: 1.18.0
+            otp: 27.2
 
     steps:
       - name: Checkout
@@ -109,8 +109,8 @@ jobs:
       fail-fast: false
       matrix:
         versions:
-          - elixir: 1.17.3
-            otp: 27.1
+          - elixir: 1.18.0
+            otp: 27.2
 
     steps:
       - name: Checkout
@@ -155,8 +155,8 @@ jobs:
       fail-fast: false
       matrix:
         versions:
-          - elixir: 1.17.3
-            otp: 27.1
+          - elixir: 1.18.0
+            otp: 27.2
     uses: ./.github/workflows/partitioned_tests.yml
     with:
       partition: "1"
@@ -171,8 +171,8 @@ jobs:
       fail-fast: false
       matrix:
         versions:
-          - elixir: 1.17.3
-            otp: 27.1
+          - elixir: 1.18.0
+            otp: 27.2
     uses: ./.github/workflows/partitioned_tests.yml
     with:
       partition: "2"
@@ -188,8 +188,8 @@ jobs:
       fail-fast: false
       matrix:
         versions:
-          - elixir: 1.17.3
-            otp: 27.1
+          - elixir: 1.18.0
+            otp: 27.2
 
     steps:
       - name: Checkout
