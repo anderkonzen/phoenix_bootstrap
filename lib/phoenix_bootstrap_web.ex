@@ -42,8 +42,9 @@ defmodule PhoenixBootstrapWeb do
         formats: [:html, :json],
         layouts: [html: PhoenixBootstrapWeb.Layouts]
 
+      use Gettext, backend: PhoenixBootstrapWeb.Gettext
+
       import Plug.Conn
-      import PhoenixBootstrapWeb.Gettext
 
       unquote(verified_routes())
     end
@@ -81,11 +82,13 @@ defmodule PhoenixBootstrapWeb do
 
   defp html_helpers do
     quote do
+      # Translation
+      use Gettext, backend: SampleAppWeb.Gettext
+
       # HTML escaping functionality
       import Phoenix.HTML
-      # Core UI components and translation
+      # Core UI components
       import PhoenixBootstrapWeb.CoreComponents
-      import PhoenixBootstrapWeb.Gettext
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
