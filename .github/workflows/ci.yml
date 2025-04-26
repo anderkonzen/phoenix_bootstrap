@@ -50,7 +50,7 @@ jobs:
       matrix:
         versions:
           - elixir: 1.18.3
-            otp: 27.3.3.3
+            otp: 27.3.3
 
     steps:
       - name: Checkout
