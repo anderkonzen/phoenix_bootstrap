@@ -21,7 +21,7 @@ jobs:
       matrix:
         versions:
           - elixir: 1.18.3
-            otp: 27.3
+            otp: 27.3.3
 
     steps:
       - name: Checkout
@@ -50,7 +50,7 @@ jobs:
       matrix:
         versions:
           - elixir: 1.18.3
-            otp: 27.3
+            otp: 27.3.3.3
 
     steps:
       - name: Checkout
@@ -80,7 +80,7 @@ jobs:
       matrix:
         versions:
           - elixir: 1.18.3
-            otp: 27.3
+            otp: 27.3.3
 
     steps:
       - name: Checkout
@@ -110,7 +110,7 @@ jobs:
       matrix:
         versions:
           - elixir: 1.18.3
-            otp: 27.3
+            otp: 27.3.3
 
     steps:
       - name: Checkout
@@ -156,7 +156,7 @@ jobs:
       matrix:
         versions:
           - elixir: 1.18.3
-            otp: 27.3
+            otp: 27.3.3
     uses: ./.github/workflows/partitioned_tests.yml
     with:
       partition: "1"
@@ -172,7 +172,7 @@ jobs:
       matrix:
         versions:
           - elixir: 1.18.3
-            otp: 27.3
+            otp: 27.3.3
     uses: ./.github/workflows/partitioned_tests.yml
     with:
       partition: "2"
@@ -189,7 +189,7 @@ jobs:
       matrix:
         versions:
           - elixir: 1.18.3
-            otp: 27.3
+            otp: 27.3.3
 
     steps:
       - name: Checkout
