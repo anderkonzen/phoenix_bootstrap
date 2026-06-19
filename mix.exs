@@ -5,22 +5,32 @@ defmodule PhoenixBootstrap.MixProject do
     [
       app: :phoenix_bootstrap,
       version: "0.1.0",
-      elixir: "~> 1.18 ",
+      elixir: "~> 1.20",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
-      preferred_cli_env: [
-        lint: :test,
-        deps_audit: :test,
-        ci: :test
-      ],
+      compilers: [:phoenix_live_view] ++ Mix.compilers(),
+      listeners: [Phoenix.CodeReloader],
       dialyzer: [
         plt_file: {:no_warn, "priv/plts/project.plt"}
       ],
       # The threshold value is very low to make the CI pass in the bootstrap repo.
       # I recommend changing this value to at least 90 in a real project.
       test_coverage: [summary: [threshold: 20]]
+    ]
+  end
+
+  # Configuration for the Mix command line interface.
+  #
+  # Type `mix help cli` for more information.
+  def cli do
+    [
+      preferred_envs: [
+        lint: :test,
+        deps_audit: :test,
+        ci: :test
+      ]
     ]
   end
 
@@ -43,21 +53,20 @@ defmodule PhoenixBootstrap.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.7.18"},
+      {:phoenix, "~> 1.8.0"},
       {:phoenix_ecto, "~> 4.5"},
       {:ecto_sql, "~> 3.10"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      # TODO bump on release to {:phoenix_live_view, "~> 1.0.0"},
-      {:phoenix_live_view, "~> 1.0.0", override: true},
-      {:floki, ">= 0.30.0", only: :test},
+      {:phoenix_live_view, "~> 1.1"},
+      {:lazy_html, ">= 0.1.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.8.3"},
-      {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
-      {:tailwind, "~> 0.2", runtime: Mix.env() == :dev},
+      {:esbuild, "~> 0.10", runtime: Mix.env() == :dev},
+      {:tailwind, "~> 0.3", runtime: Mix.env() == :dev},
       {:heroicons,
        github: "tailwindlabs/heroicons",
-       tag: "v2.1.1",
+       tag: "v2.2.0",
        sparse: "optimized",
        app: false,
        compile: false,
@@ -66,7 +75,7 @@ defmodule PhoenixBootstrap.MixProject do
       {:finch, "~> 0.13"},
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
-      {:gettext, "~> 0.26"},
+      {:gettext, "~> 1.0"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
@@ -90,7 +99,7 @@ defmodule PhoenixBootstrap.MixProject do
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.build": ["tailwind phoenix_bootstrap", "esbuild phoenix_bootstrap"],
+      "assets.build": ["compile", "tailwind phoenix_bootstrap", "esbuild phoenix_bootstrap"],
       "assets.deploy": [
         "tailwind phoenix_bootstrap --minify",
         "esbuild phoenix_bootstrap --minify",
