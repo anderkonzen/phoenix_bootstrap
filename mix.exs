@@ -5,22 +5,30 @@ defmodule PhoenixBootstrap.MixProject do
     [
       app: :phoenix_bootstrap,
       version: "0.1.0",
-      elixir: "~> 1.18 ",
+      elixir: "~> 1.20",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
-      preferred_cli_env: [
-        lint: :test,
-        deps_audit: :test,
-        ci: :test
-      ],
       dialyzer: [
         plt_file: {:no_warn, "priv/plts/project.plt"}
       ],
       # The threshold value is very low to make the CI pass in the bootstrap repo.
       # I recommend changing this value to at least 90 in a real project.
       test_coverage: [summary: [threshold: 20]]
+    ]
+  end
+
+  # Configuration for the Mix command line interface.
+  #
+  # Type `mix help cli` for more information.
+  def cli do
+    [
+      preferred_envs: [
+        lint: :test,
+        deps_audit: :test,
+        ci: :test
+      ]
     ]
   end
 
@@ -43,14 +51,13 @@ defmodule PhoenixBootstrap.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.7.18"},
+      {:phoenix, "~> 1.8.0"},
       {:phoenix_ecto, "~> 4.5"},
       {:ecto_sql, "~> 3.10"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      # TODO bump on release to {:phoenix_live_view, "~> 1.0.0"},
-      {:phoenix_live_view, "~> 1.0.0", override: true},
+      {:phoenix_live_view, "~> 1.1"},
       {:floki, ">= 0.30.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.8.3"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
@@ -66,7 +73,7 @@ defmodule PhoenixBootstrap.MixProject do
       {:finch, "~> 0.13"},
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
-      {:gettext, "~> 0.26"},
+      {:gettext, "~> 1.0"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
